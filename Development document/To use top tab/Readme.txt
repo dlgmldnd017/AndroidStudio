@@ -1,0 +1,1 @@
+NoActionbar must be set in res/values/them.

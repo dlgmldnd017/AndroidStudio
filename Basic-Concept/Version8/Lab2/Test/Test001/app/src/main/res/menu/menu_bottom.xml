@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/bottom_menu1"
+        android:icon="@drawable/ic_menu_camera"
+        android:title="카메라"/>
+
+    <item
+        android:id="@+id/bottom_menu2"
+        android:icon="@drawable/ic_menu_gallery"
+        android:title="갤러리"/>
+
+    <item
+        android:id="@+id/bottom_menu3"
+        android:icon="@drawable/ic_menu_slideshow"
+        android:title="슬라이드쇼"/>
+
+
+
+</menu>

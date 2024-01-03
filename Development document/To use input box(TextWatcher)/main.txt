@@ -1,0 +1,30 @@
+TextWatcher watcher = new TextWatcher() {
+            public void onTextChanged(CharSequence str, int start, int before, int count) {
+                byte[] bytes = null;
+                try {
+                    bytes = str.toString().getBytes("KSC5601");
+                    int strCount = bytes.length;
+                    tv1.setText(strCount + " / 80바이트");
+                } catch(UnsupportedEncodingException ex) {
+                    ex.printStackTrace();
+                }
+            }
+
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+
+            }
+
+            public void afterTextChanged(Editable strEditable) {
+                String str = strEditable.toString();
+                try {
+                    byte[] strBytes = str.getBytes("KSC5601");
+                    if(strBytes.length > 80) {
+                        strEditable.delete(strEditable.length()-2, strEditable.length()-1);
+                    }
+                } catch(Exception ex) {
+                    ex.printStackTrace();
+                }
+            }
+        };
+
+        ed1.addTextChangedListener(watcher);

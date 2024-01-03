@@ -1,0 +1,16 @@
+private void send(String input) {
+        JSONObject request = new JSONObject();
+
+        try{
+            request.put("priority", "high");
+
+            JSONObject data = new JSONObject();
+            data.put("contents", input);
+            request.put("data", data);
+
+            JSONArray idArray = new JSONArray();
+            idArray.put(0, regId);
+            request.put("registration_ids", idArray);
+        }catch (Exception e){
+            e.printStackTrace();
+        }

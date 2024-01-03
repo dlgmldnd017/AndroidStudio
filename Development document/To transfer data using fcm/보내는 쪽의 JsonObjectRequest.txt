@@ -1,0 +1,26 @@
+private void sendData(JSONObject request, SendResponseListener listener) {
+        JsonObjectRequest jsonObjectRequest = new JsonObjectRequest(
+                Request.Method.POST, "https://fcm.googleapis.com/fcm/send",
+                request, new Response.Listener<JSONObject>() {
+            @Override
+            public void onResponse(JSONObject response) {
+                listener.onRequestCompleted();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                listener.onRequestError();
+                error.printStackTrace();
+            }
+        }){
+            @Override
+            public Map<String, String> getHeaders() throws AuthFailureError {
+                Map<String, String> map = new HashMap<>();
+                map.put("Authorization", "key=AAAAZLGMG3I:APA91bEdN1ubkcrO8fhAkPvyJIoLl6-AchwKeP5YJwYWuYxdav1sxiY-2lw-IOVyU2kl4W0sRPtf1EJoNA5u2QvJ7G3tOlLY75AUd5mf5PV7YUwWJ9i9ITrTdIZ_6aSIWEdu3npZkmVE");
+                return map;
+            }
+        };
+        jsonObjectRequest.setShouldCache(false);
+        listener.onRequestStart();
+        requestQueue.add(jsonObjectRequest);
+    }

@@ -1,0 +1,28 @@
+public class MyFirebaseMessagingService extends FirebaseMessagingService {
+    @Override
+    public void onMessageReceived(@NonNull RemoteMessage message) {
+        super.onMessageReceived(message);
+        
+        String from = message.getFrom();
+        Map<String, String> messageData = message.getData();
+        String contents = messageData.get("contents");
+        
+        sendToActivity(from, contents);
+    }
+
+    private void sendToActivity(String from, String contents) {
+        Intent intent = new Intent(this, MainActivity.class);
+        intent.putExtra("from", from);
+        intent.putExtra("contents", contents);
+        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP|
+                Intent.FLAG_ACTIVITY_NEW_TASK|
+                Intent.FLAG_ACTIVITY_SINGLE_TOP);
+
+        startActivity(intent);
+    }
+
+    @Override
+    public void onNewToken(@NonNull String token) {
+        super.onNewToken(token);
+    }
+}

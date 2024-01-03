@@ -1,0 +1,3 @@
+MyReceiver myReceiver = new MyReceiver();
+IntentFilter filter = new IntentFilter("com.example.Mission12.SHOW");
+this.registerReceiver(myReceiver, filter);

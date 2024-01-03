@@ -1,0 +1,35 @@
+@Override
+    protected void onPause() {
+        super.onPause();
+
+        saveState();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        restoreState();
+    }
+
+    protected void restoreState() {
+        SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        if ((pref != null) && (pref.contains("name"))) {
+            String name = pref.getString("name", "");
+            nameInput.setText(name);
+        }
+    }
+
+    protected void saveState() {
+        SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.putString("name", nameInput.getText().toString());
+        editor.commit();
+    }
+
+    protected void clearState() {
+        SharedPreferences pref = getSharedPreferences("pref", Activity.MODE_PRIVATE);
+        SharedPreferences.Editor editor = pref.edit();
+        editor.clear();
+        editor.commit();
+    }

@@ -1,0 +1,3 @@
+WindowManager.LayoutParams params = getWindow().getAttributes();
+params.screenBrightness = (float)value/100;
+getWindow().setAttributes(params);

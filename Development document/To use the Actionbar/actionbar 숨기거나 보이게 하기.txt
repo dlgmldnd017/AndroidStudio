@@ -1,0 +1,6 @@
+ActionBar abar = getActionBar();
+abar.show()
+
+또는
+
+abar.hide()

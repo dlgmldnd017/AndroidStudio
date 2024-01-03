@@ -1,0 +1,42 @@
+private void showDateDialog() {
+        String birthDateStr = btn1.getText().toString();
+
+        Calendar calendar = Calendar.getInstance();
+        Date curBirthDate = new Date();
+        try {
+            curBirthDate = dateFormat.parse(birthDateStr);
+        } catch(Exception ex) {
+            ex.printStackTrace();
+        }
+
+        calendar.setTime(curBirthDate);
+
+        int curYear = calendar.get(Calendar.YEAR);
+        int curMonth = calendar.get(Calendar.MONTH);
+        int curDay = calendar.get(Calendar.DAY_OF_MONTH);
+
+        DatePickerDialog dialog = new DatePickerDialog(getContext(),  birthDateSetListener,  curYear, curMonth, curDay);
+        dialog.show();
+    }
+
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+private DatePickerDialog.OnDateSetListener birthDateSetListener = new DatePickerDialog.OnDateSetListener() {
+        public void onDateSet(DatePicker view, int year, int monthOfYear, int dayOfMonth) {
+            Calendar selectedCalendar = Calendar.getInstance();
+            selectedCalendar.set(Calendar.YEAR, year);
+            selectedCalendar.set(Calendar.MONTH, monthOfYear);
+            selectedCalendar.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+
+            Date curDate = selectedCalendar.getTime();
+            setSelectedDate(curDate);
+        }
+    };
+
+    private void setSelectedDate(Date curDate) {
+        selectedDate = curDate;
+
+        String selectedDateStr = dateFormat.format(curDate);
+        btn1.setText(selectedDateStr);
+    }
